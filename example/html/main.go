@@ -8,9 +8,7 @@ func main() {
 	e := middle.New()
 
 	e.GET("/", func(ctx *middle.Context) {
-		ctx.JSON(200, map[string]string{
-			"key": "value",
-		})
+		ctx.HTML(200, "<h1>hello</h1>")
 	})
 
 	e.Listen(":8080")
