@@ -36,7 +36,6 @@ func MatchPath(routePath, reqPath string) (Params, error) {
 			params[name] = value
 		} else if segment != req[i] {
 			Error(fmt.Sprintf("path segments do not match: '%s' != '%s'", segment, req[i]))
-			continue
 		}
 	}
 
