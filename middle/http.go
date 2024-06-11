@@ -44,6 +44,16 @@ func (ctx *Context) HTML(status int, obj string, options ...Headers) {
 	ctx.Writer.Write([]byte(obj))
 }
 
+func (ctx *Context) Write(status int, obj string, options ...Headers) {
+	if len(options) != 0 {
+		for key, value := range options[0].Header {
+			ctx.Writer.Header().Add(key, value)
+		}
+	}
+	ctx.Writer.WriteHeader(status)
+	ctx.Writer.Write([]byte(obj))
+}
+
 func (ctx *Context) SetCookie(name, value, path, domain string, date time.Duration, options ...Cookie) {
 	cookie := &http.Cookie{
 		Name:  name,

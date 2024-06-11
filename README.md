@@ -1,4 +1,4 @@
-# MiddleWare
+# Middleware
 
 under development...
 
