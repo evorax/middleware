@@ -1,4 +1,4 @@
-module elibary
+module github.com/evorax/middleware
 
 go 1.22.3
 
