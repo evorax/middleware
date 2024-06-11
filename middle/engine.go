@@ -2,7 +2,6 @@ package middle
 
 import (
 	"net/http"
-	"regexp"
 )
 
 type H map[interface{}]interface{}
@@ -10,14 +9,14 @@ type H map[interface{}]interface{}
 type Context struct {
 	Writer  http.ResponseWriter
 	Request *http.Request
-	Params  map[string]string
+	Params  Params
 }
 
 type HandlerFunc func(*Context)
 
 type route struct {
 	method  string
-	pattern *regexp.Regexp
+	pattern string
 	handler HandlerFunc
 }
 
