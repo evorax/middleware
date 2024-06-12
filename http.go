@@ -1,10 +1,11 @@
 package middleware
 
 import (
-	"encoding/json"
 	"fmt"
 	"net/http"
 	"time"
+
+	"github.com/evorax/middleware/src"
 )
 
 func (ctx *Context) GetParam(key string) string {
@@ -15,43 +16,24 @@ func (ctx *Context) GetParam(key string) string {
 	return value
 }
 
-func (ctx *Context) JSON(status int, obj any, options ...Headers) error {
-	if len(options) != 0 {
-		for key, value := range options[0].Header {
-			ctx.Writer.Header().Add(key, value)
-		}
-	}
-
-	ctx.Writer.Header().Set("Content-Type", "application/json")
-	ctx.Writer.WriteHeader(status)
-
-	parse, err := json.Marshal(obj)
-	if err != nil {
-		return err
-	}
-
-	ctx.Writer.Write(parse)
-	return nil
+func (ctx *Context) JSON(status int, obj any, headers ...map[string]string) error {
+	return src.WriteJSON(ctx.Writer, status, obj, headers...)
 }
 
-func (ctx *Context) HTML(status int, obj string, options ...Headers) {
-	if len(options) != 0 {
-		for key, value := range options[0].Header {
-			ctx.Writer.Header().Add(key, value)
-		}
-	}
-	ctx.Writer.WriteHeader(status)
-	ctx.Writer.Write([]byte(obj))
+func (ctx *Context) HTML(status int, obj string, headers ...map[string]string) error {
+	return src.WriteHTML(ctx.Writer, status, obj, headers...)
 }
 
-func (ctx *Context) Write(status int, obj string, options ...Headers) {
-	if len(options) != 0 {
-		for key, value := range options[0].Header {
-			ctx.Writer.Header().Add(key, value)
-		}
-	}
-	ctx.Writer.WriteHeader(status)
-	ctx.Writer.Write([]byte(obj))
+func (ctx *Context) Write(status int, obj []byte, headers ...map[string]string) error {
+	return src.WriteTo(ctx.Writer, status, obj, headers...)
+}
+
+func (ctx *Context) WriteString(status int, obj string, headers ...map[string]string) error {
+	return src.WriteTo(ctx.Writer, status, []byte(obj), headers...)
+}
+
+func (ctx *Context) SetHeader(key, value string) {
+	ctx.Writer.Header().Set(key, value)
 }
 
 func (ctx *Context) SetCookie(name, value, path, domain string, date time.Duration, options ...Cookie) {

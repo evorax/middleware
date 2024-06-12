@@ -1,4 +1,4 @@
-package middleware
+package internal
 
 import (
 	"errors"
@@ -30,12 +30,12 @@ func MatchPath(routePath, reqPath string) (Params, error) {
 
 			name, err := Match(name, value)
 			if err != nil {
-				Error(err)
+				return nil, err
 			}
 
 			params[name] = value
 		} else if segment != req[i] {
-			Error(fmt.Sprintf("path segments do not match: '%s' != '%s'", segment, req[i]))
+			return nil, fmt.Errorf("path segments do not match: '%s' != '%s'\n", segment, req[i])
 		}
 	}
 

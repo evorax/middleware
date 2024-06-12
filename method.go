@@ -39,3 +39,11 @@ func (e *Engine) PATCH(pattern string, handler HandlerFunc) {
 func (e *Engine) Other(method string, pattern string, handler HandlerFunc) {
 	e.AddRoute(method, pattern, handler)
 }
+
+func (e *Engine) Route(pattern string, handler HandlerFunc) {
+	e.routes = append(e.routes, &route{
+		method:  "",
+		pattern: pattern,
+		handler: handler,
+	})
+}

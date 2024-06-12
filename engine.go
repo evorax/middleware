@@ -2,12 +2,14 @@ package middleware
 
 import (
 	"net/http"
+
+	"github.com/evorax/middleware/src"
 )
 
 type Context struct {
 	Writer  http.ResponseWriter
 	Request *http.Request
-	Params  Params
+	Params  src.Params
 }
 
 type HandlerFunc func(*Context)
@@ -36,9 +38,7 @@ type Cookie struct {
 
 type SameSite int
 
-type Headers struct {
-	Header map[string]string
-}
+type Headers map[string]string
 
 func New(staticDir ...string) *Engine {
 	if len(staticDir) >= 1 {
