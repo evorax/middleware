@@ -1,4 +1,4 @@
-package middle
+package middleware
 
 func (e *Engine) GET(pattern string, handler HandlerFunc) {
 	e.AddRoute("GET", pattern, handler)
