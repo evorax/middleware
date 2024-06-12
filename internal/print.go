@@ -18,7 +18,7 @@ func formatMessage(level, message string, colorFunc func(a ...interface{}) strin
 	return fmt.Sprintf("%s [%s] %s", timestamp, colorFunc(level), message)
 }
 
-func Info(args ...any) {
+func Info[T any](args ...T) {
 	var message string
 	for _, arg := range args {
 		message += fmt.Sprint(arg, " ")
@@ -26,7 +26,7 @@ func Info(args ...any) {
 	fmt.Println(formatMessage("INFO", message, infoColor))
 }
 
-func Warning(args ...any) {
+func Warning[T any](args ...T) {
 	var message string
 	for _, arg := range args {
 		message += fmt.Sprint(arg, " ")
@@ -34,7 +34,7 @@ func Warning(args ...any) {
 	fmt.Println(formatMessage("WARNING", message, warningColor))
 }
 
-func Error(args ...any) {
+func Error[T any](args ...T) {
 	var message string
 	for _, arg := range args {
 		message += fmt.Sprint(arg, " ")

@@ -9,7 +9,7 @@ import (
 )
 
 func TestPattern(t *testing.T) {
-	param, err := internal.Match("/:id", "/test")
+	param, err := internal.MatchPath(`/foo/:id[^[a-zA-Z]+$]`, "/foo/test")
 	if err != nil {
 		log.Fatal(err)
 	}

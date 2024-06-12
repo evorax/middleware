@@ -35,7 +35,7 @@ func MatchPath(routePath, reqPath string) (Params, error) {
 
 			params[name] = value
 		} else if segment != req[i] {
-			return nil, fmt.Errorf("path segments do not match: '%s' != '%s'\n", segment, req[i])
+			return nil, fmt.Errorf("path segments do not match: '%s' != '%s'", segment, req[i])
 		}
 	}
 
