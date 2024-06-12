@@ -3,17 +3,17 @@ package main
 import (
 	"fmt"
 
-	middle "github.com/evorax/middleware"
+	"github.com/evorax/middleware"
 )
 
 func main() {
-	e := middle.New()
+	e := middleware.New()
 
-	e.GET(`/foo/:id[^[a-zA-Z]+$]/:id2[^\d+$]`, func(ctx *middle.Context) {
+	e.GET(`/foo/:id[^[a-zA-Z]+$]/:id2[^\d+$]`, func(ctx *middleware.Context) {
 		ctx.Write(200, fmt.Sprintf("id:%s id2:%s", ctx.GetParam("id"), ctx.GetParam("id2")))
 	})
 
-	e.GET(`/abc/*/:id`, func(ctx *middle.Context) {
+	e.GET(`/abc/*/:id`, func(ctx *middleware.Context) {
 		ctx.Write(200, ctx.GetParam("id"))
 	})
 

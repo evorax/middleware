@@ -1,13 +1,9 @@
 package main
 
-import (
-	middle "github.com/evorax/middleware"
-)
-
 func main() {
-	e := middle.New()
+	e := middleware.New()
 
-	e.GET("/", func(ctx *middle.Context) {
+	e.GET("/", func(ctx *middleware.Context) {
 		ctx.HTML(200, "<h1>hello</h1>")
 	})
 

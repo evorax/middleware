@@ -1,13 +1,13 @@
 package main
 
 import (
-	middle "github.com/evorax/middleware"
+	"github.com/evorax/middleware"
 )
 
 func main() {
-	e := middle.New()
+	e := middleware.New()
 
-	e.GET("/", func(ctx *middle.Context) {
+	e.GET("/", func(ctx *middleware.Context) {
 		ctx.JSON(200, map[string]string{
 			"key": "value",
 		})
