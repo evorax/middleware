@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	middle "github.com/evorax/middleware/pkg"
+	middle "github.com/evorax/middleware"
 )
 
 func main() {
