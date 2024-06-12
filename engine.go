@@ -3,13 +3,13 @@ package middleware
 import (
 	"net/http"
 
-	"github.com/evorax/middleware/src"
+	"github.com/evorax/middleware/internal"
 )
 
 type Context struct {
 	Writer  http.ResponseWriter
 	Request *http.Request
-	Params  src.Params
+	Params  internal.Params
 }
 
 type HandlerFunc func(*Context)

@@ -1,5 +1,7 @@
 package main
 
+import "github.com/evorax/middleware"
+
 func main() {
 	e := middleware.New()
 

@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/evorax/middleware/src"
+	"github.com/evorax/middleware/internal"
 )
 
 func (ctx *Context) GetParam(key string) string {
@@ -17,19 +17,19 @@ func (ctx *Context) GetParam(key string) string {
 }
 
 func (ctx *Context) JSON(status int, obj any, headers ...map[string]string) error {
-	return src.WriteJSON(ctx.Writer, status, obj, headers...)
+	return internal.WriteJSON(ctx.Writer, status, obj, headers...)
 }
 
 func (ctx *Context) HTML(status int, obj string, headers ...map[string]string) error {
-	return src.WriteHTML(ctx.Writer, status, obj, headers...)
+	return internal.WriteHTML(ctx.Writer, status, obj, headers...)
 }
 
 func (ctx *Context) Write(status int, obj []byte, headers ...map[string]string) error {
-	return src.WriteTo(ctx.Writer, status, obj, headers...)
+	return internal.WriteTo(ctx.Writer, status, obj, headers...)
 }
 
 func (ctx *Context) WriteString(status int, obj string, headers ...map[string]string) error {
-	return src.WriteTo(ctx.Writer, status, []byte(obj), headers...)
+	return internal.WriteTo(ctx.Writer, status, []byte(obj), headers...)
 }
 
 func (ctx *Context) SetHeader(key, value string) {
