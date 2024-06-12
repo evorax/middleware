@@ -4,8 +4,6 @@ import (
 	"net/http"
 )
 
-type H map[interface{}]interface{}
-
 type Context struct {
 	Writer  http.ResponseWriter
 	Request *http.Request
